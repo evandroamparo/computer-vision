@@ -1,12 +1,9 @@
 import os, requests, uuid, json
 
 def translate(text):
-    # Add your subscription key and endpoint
     endpoint = os.getenv("TRANSLATOR_ENDPOINT")
-
-    # Add your location, also known as region. The default is global.
-    # This is required if using a Cognitive Services resource.
     location = os.getenv("TRANSLATOR_LOCATION")
+    subscription_key = os.getenv('TRANSLATOR_SUBSCRIPTION_KEY')
 
     path = '/translate'
     constructed_url = endpoint + path
@@ -19,7 +16,7 @@ def translate(text):
     constructed_url = endpoint + path
 
     headers = {
-        'Ocp-Apim-Subscription-Key': os.getenv('TRANSLATOR_SUBSCRIPTION_KEY'),
+        'Ocp-Apim-Subscription-Key': subscription_key,
         'Ocp-Apim-Subscription-Region': location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())

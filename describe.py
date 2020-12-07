@@ -4,9 +4,10 @@ import os
 
 def describe(image_path):
     endpoint = os.getenv("COMPUTER_VISION_ENDPOINT")
+    subscription_key = os.getenv("COMPUTER_VISION_SUBSCRIPTION_KEY")
 
     computervision_client = ComputerVisionClient(
-        endpoint, CognitiveServicesCredentials(os.getenv("COMPUTER_VISION_SUBSCRIPTION_KEY")))
+        endpoint, CognitiveServicesCredentials(subscription_key))
 
     if (not os.path.isfile(image_path)):
         description_results = computervision_client.describe_image(
